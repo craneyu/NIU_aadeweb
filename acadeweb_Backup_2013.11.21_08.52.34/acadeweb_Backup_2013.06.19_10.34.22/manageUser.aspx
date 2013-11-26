@@ -1,0 +1,93 @@
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="manageUser.aspx.vb" Inherits="acadeweb.manageUser" %>
+
+<%@ Register src="Registry_menu.ascx" tagname="Registry_menu" tagprefix="uc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="CSS/StyleSheet1.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style1
+        {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <uc1:Registry_menu ID="Registry_menu1" runat="server" />
+         <div class="spacer"></div>
+          <div class="textMain2">
+              <p><img alt="icon" class="style1" src="image/18.gif" />
+          權限管控</p>
+          <p>依單位搜尋：<asp:DropDownList ID="DDL_Unit" runat="server" AutoPostBack="True">
+                  <asp:ListItem Value="NULL" Selected="True">..Select..</asp:ListItem>
+                  <asp:ListItem Value="0">系統管理員</asp:ListItem>
+                  <asp:ListItem Value="1">教務處註冊組</asp:ListItem>
+                  <asp:ListItem Value="2">教務處課務組</asp:ListItem>
+                  <asp:ListItem Value="5">總務處出納組</asp:ListItem>
+                  <asp:ListItem Value="4">學務處生輔組</asp:ListItem>
+              </asp:DropDownList></p>
+              <telerik:RadGrid ID="RadGrid1" runat="server" CellSpacing="0" Culture="zh-TW" 
+                  DataSourceID="SqlDataSource1" GridLines="None" Width="300px" 
+                  Skin="Office2010Blue">
+                    <MasterTableView AutoGenerateColumns="False" DataKeyNames="Code" DataSourceID="SqlDataSource1">
+                    <CommandItemSettings ExportToPdfText="Export to PDF"></CommandItemSettings>
+
+                    <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
+                    <HeaderStyle Width="20px"></HeaderStyle>
+                    </RowIndicatorColumn>
+
+                    <ExpandCollapseColumn Visible="True" FilterControlAltText="Filter ExpandColumn column">
+                    <HeaderStyle Width="20px"></HeaderStyle>
+                    </ExpandCollapseColumn>
+
+    <Columns>
+  <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" 
+            HeaderText=" 序號" UniqueName="TemplateColumn" DataType="System.Int32" 
+            DefaultInsertValue="1">
+            <ItemTemplate>
+               <%#Container.DataSetIndex + 1%>
+            </ItemTemplate>
+            <HeaderStyle Width="40px" />
+            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+        </telerik:GridTemplateColumn>
+         <telerik:GridBoundColumn DataField="Name" 
+            FilterControlAltText="Filter Name column" HeaderText="姓名" 
+            SortExpression="Name" UniqueName="Name">
+        </telerik:GridBoundColumn>
+       <telerik:GridBoundColumn DataField="Code" 
+            FilterControlAltText="Filter Code column" HeaderText="帳號" SortExpression="Code" 
+            UniqueName="Code" ReadOnly="True">
+        </telerik:GridBoundColumn>
+        <telerik:GridBoundColumn DataField="pw" FilterControlAltText="Filter pw column" 
+            HeaderText="密碼" SortExpression="pw" UniqueName="pw">
+        </telerik:GridBoundColumn>
+    </Columns>
+
+<EditFormSettings>
+<EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
+</EditFormSettings>
+
+<PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+</MasterTableView>
+
+<PagerStyle PageSizeControlType="RadComboBox"></PagerStyle>
+
+<FilterMenu EnableImageSprites="False"></FilterMenu>
+              </telerik:RadGrid>
+              <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                  ConnectionString="<%$ ConnectionStrings:Connect_NIU_DBASE %>" 
+                  ProviderName="<%$ ConnectionStrings:Connect_NIU_DBASE.ProviderName %>" 
+                  SelectCommand="">
+              </asp:SqlDataSource>
+          </div>
+    </form>
+</body>
+</html>

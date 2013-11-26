@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetUId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetUIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUId" />
+  </wsdl:message>
+  <wsdl:message name="GetUIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SSOGUIDSoap">
+    <wsdl:operation name="GetUId">
+      <wsdl:input message="tns:GetUIdSoapIn" />
+      <wsdl:output message="tns:GetUIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SSOGUIDSoap" type="tns:SSOGUIDSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUId">
+      <soap:operation soapAction="http://tempuri.org/GetUId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SSOGUIDSoap12" type="tns:SSOGUIDSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUId">
+      <soap12:operation soapAction="http://tempuri.org/GetUId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SSOGUID">
+    <wsdl:port name="SSOGUIDSoap" binding="tns:SSOGUIDSoap">
+      <soap:address location="https://syscc.niu.edu.tw/SSOWS/SSOGUID.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SSOGUIDSoap12" binding="tns:SSOGUIDSoap12">
+      <soap12:address location="https://syscc.niu.edu.tw/SSOWS/SSOGUID.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
