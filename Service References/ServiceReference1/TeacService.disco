@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://syscc.niu.edu.tw/LdapWS/TeacService.asmx?wsdl" docRef="https://syscc.niu.edu.tw/LdapWS/TeacService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://syscc.niu.edu.tw/LdapWS/TeacService.asmx" xmlns:q1="http://niu.edu.tw/" binding="q1:TeacServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://syscc.niu.edu.tw/LdapWS/TeacService.asmx" xmlns:q2="http://niu.edu.tw/" binding="q2:TeacServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>
